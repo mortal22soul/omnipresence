@@ -3,9 +3,9 @@ import './globals.css';
 import { Analytics } from '@vercel/analytics/react';
 
 export const metadata = {
-  title: 'Next.js App Router + NextAuth + Tailwind CSS',
+  title: 'Omnipresence',
   description:
-    'A user admin dashboard configured with Next.js, Postgres, NextAuth, Tailwind CSS, TypeScript, and Prettier.'
+    'Empowering Safety, Everywhere. Our tech ecosystem is designed to provide a seamless layer of protection for women, leveraging real-time monitoring, intelligent alerts, and proactive solutions.'
 };
 
 export default function RootLayout({

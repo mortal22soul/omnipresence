@@ -86,7 +86,7 @@ function DesktopNav() {
           <Users2 className="h-5 w-5" />
         </NavItem>
 
-        <NavItem href="/dashboard/analytics" label="Analytics">
+        <NavItem href="/dashboard/geofences" label="Geofences">
           <LineChart className="h-5 w-5" />
         </NavItem>
       </nav>
