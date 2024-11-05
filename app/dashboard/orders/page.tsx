@@ -38,7 +38,7 @@ export default function Orders() {
     const fetchIncidents = async () => {
       try {
         const response = await fetch(
-          'http://3.110.40.185:8000/retrieve-incident'
+          `${process.env.NEXT_PUBLIC_API_URL}/retrieve-incident`
         );
         if (!response.ok) {
           throw new Error('Failed to fetch data');
