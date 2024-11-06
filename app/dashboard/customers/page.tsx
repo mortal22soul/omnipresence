@@ -43,18 +43,20 @@ export default function Customers() {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="gap-4 flex space-y-8"
+            className="gap-4 flex space-y-9"
           >
             <FormField
               control={form.control}
               name="username"
               render={({ field }: { field: any }) => (
                 <FormItem>
-                  <FormLabel className="text-xl">Username</FormLabel>
+                  <FormLabel className="text-xl">User Information</FormLabel>
                   <FormControl>
-                    <Input placeholder="shadcn" {...field} />
+                    <Input placeholder="test@example.com" {...field} />
                   </FormControl>
-                  <FormDescription>Enter user to search for.</FormDescription>
+                  <FormDescription>
+                    Enter the email address of the user you want to search for.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

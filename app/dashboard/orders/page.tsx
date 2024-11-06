@@ -61,8 +61,8 @@ export default function Orders() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Orders</CardTitle>
-        <CardDescription>View your orders here.</CardDescription>
+        <CardTitle>Past Incidents</CardTitle>
+        <CardDescription>View past incidents here.</CardDescription>
       </CardHeader>
       <CardContent>
         <Table>

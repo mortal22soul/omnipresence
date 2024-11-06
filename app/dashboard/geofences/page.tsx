@@ -1,5 +1,7 @@
 'use client';
-
+import Link from 'next/link';
+import { PlusCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import {
   Card,
@@ -57,8 +59,23 @@ export default function Geofences() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Geofences</CardTitle>
-        <CardDescription>View the geofence coordinates here.</CardDescription>
+        <div className="flex items-center justify-between">
+          <div className="flex flex-col  gap-2">
+            <CardTitle>Geofences</CardTitle>
+            <CardDescription>
+              View the geofence coordinates here.
+            </CardDescription>
+          </div>
+          <Button size="sm" className="h-8 gap-1">
+            <PlusCircle className="h-3.5 w-3.5" />
+            <Link
+              className="sr-only sm:not-sr-only sm:whitespace-nowrap"
+              href="/dashboard/add-geofence"
+            >
+              Add Geofences
+            </Link>
+          </Button>
+        </div>
       </CardHeader>
       <CardContent>
         <Table>
