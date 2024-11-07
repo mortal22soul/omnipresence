@@ -1,19 +1,6 @@
-'use client';
-
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import { useMemo } from 'react';
 
 export default function HomePage() {
-  const Map = useMemo(
-    () =>
-      dynamic(() => import('@/components/Map'), {
-        loading: () => <p>A map is loading</p>,
-        ssr: false
-      }),
-    []
-  );
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-500 via-pink-500 to-red-500 text-white">
       {/* Hero Section */}
@@ -117,7 +104,6 @@ export default function HomePage() {
           Get Started
         </Link>
       </section>
-      <Map></Map>
     </div>
   );
 }
