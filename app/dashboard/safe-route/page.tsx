@@ -1,22 +1,20 @@
 'use client';
-// pages/index.tsx (or any other page)
 import dynamic from 'next/dynamic';
+import { useMemo } from 'react';
 
-const Map = dynamic(() => import('@/components/Map'), {
-  ssr: false // Disable server-side rendering for the map
-});
+export default function MyPage() {
+  const Map = useMemo(
+    () =>
+      dynamic(() => import('@/components/Map'), {
+        loading: () => <p>A map is loading</p>,
+        ssr: false
+      }),
+    []
+  );
 
-const HomePage: React.FC = () => {
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="w-full max-w-4xl">
-        <h1 className="text-4xl font-bold text-center mb-8">
-          Your Location on the Map
-        </h1>
-        {/* <Map /> */}
-      </div>
+    <div>
+      <Map />
     </div>
   );
-};
-
-export default HomePage;
+}

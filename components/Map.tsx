@@ -1,16 +1,32 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 
-const Map: React.FC = () => {
+import React, { useEffect, useState } from 'react';
+import { MapContainer, TileLayer, Marker, Circle } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from '@/components/ui/card';
+
+// Fix for the default marker icon path issue with Leaflet
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl:
+    'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
+  iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png'
+});
+
+export default function MapWithGeofence() {
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(
     null
   );
 
   useEffect(() => {
-    // Get user's current location using geolocation API
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -20,40 +36,39 @@ const Map: React.FC = () => {
           });
         },
         (error) => {
-          console.error(error);
-          alert('Error fetching location');
+          console.error('Error fetching location:', error);
         }
       );
     } else {
-      alert('Geolocation is not supported by this browser.');
+      console.error('Geolocation is not supported by this browser.');
     }
   }, []);
 
-  if (!location) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <span className="text-xl text-gray-500">Loading map...</span>
-      </div>
-    );
-  }
-
   return (
-    <div className="w-full h-96">
-      <MapContainer
-        center={[location.lat, location.lng]}
-        zoom={13}
-        className="w-full h-full"
-      >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        />
-        <Marker position={[location.lat, location.lng]}>
-          <Popup>Your current location</Popup>
-        </Marker>
-      </MapContainer>
-    </div>
+    <Card className="p-4 shadow-md">
+      <h2 className="text-xl font-bold mb-4">
+        User Location with 500m Geofence
+      </h2>
+      {location ? (
+        <MapContainer
+          center={location}
+          zoom={15}
+          style={{ height: '400px', width: '100%' }}
+        >
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+          />
+          <Marker position={location} />
+          <Circle
+            center={location}
+            radius={500}
+            pathOptions={{ color: 'red', fillColor: '#f03', fillOpacity: 0.2 }}
+          />
+        </MapContainer>
+      ) : (
+        <p>Loading location...</p>
+      )}
+    </Card>
   );
-};
-
-export default Map;
+}
