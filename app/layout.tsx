@@ -1,11 +1,12 @@
 import './globals.css';
 
-import { Analytics } from '@vercel/analytics/react';
-
 export const metadata = {
   title: 'Omnipresence',
   description:
-    'Empowering Safety, Everywhere. Our tech ecosystem is designed to provide a seamless layer of protection for women, leveraging real-time monitoring, intelligent alerts, and proactive solutions.'
+    'Empowering Safety, Everywhere. Our tech ecosystem is designed to provide a seamless layer of protection for women, leveraging real-time monitoring, intelligent alerts, and proactive solutions.',
+  icons: {
+    icon: '/logo.png'
+  }
 };
 
 export default function RootLayout({
@@ -22,7 +23,6 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-screen w-full flex-col">{children}</body>
-      <Analytics />
     </html>
   );
 }

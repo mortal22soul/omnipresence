@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Features from '@/components/Features';
 
 export default function HomePage() {
   return (
@@ -32,7 +33,7 @@ export default function HomePage() {
 
       {/* Features Section */}
       <section className="py-16 px-6 md:px-12 bg-gray-100 text-gray-900">
-        <h2 className="text-3xl font-bold text-center">
+        {/* <h2 className="text-3xl font-bold text-center">
           Why Choose Omnipresence?
         </h2>
         <div className="mt-12 grid gap-8 md:grid-cols-3">
@@ -57,7 +58,8 @@ export default function HomePage() {
               potential risks.
             </p>
           </div>
-        </div>
+        </div> */}
+        <Features></Features>
       </section>
 
       {/* Testimonials Section */}

@@ -7,30 +7,28 @@ import {
   PanelLeft,
   Settings,
   ShoppingCart,
-  Users2
+  Users2,
+  MapPin,
+  Fence,
+  ShieldCheck
 } from 'lucide-react';
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator
-} from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
+
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger
 } from '@/components/ui/tooltip';
+
 import { Analytics } from '@vercel/analytics/react';
 import { User } from './user';
-import { VercelLogo } from '@/components/icons';
+import logo from 'public/logo.png';
 import Providers from './providers';
 import { NavItem } from './nav-item';
 import { SearchInput } from './search';
+import Image from 'next/image';
 
 export default function DashboardLayout({
   children
@@ -66,32 +64,36 @@ function DesktopNav() {
           href="/"
           className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
         >
-          <VercelLogo className="h-3 w-3 transition-all group-hover:scale-110" />
-          <span className="sr-only">Acme Inc</span>
+          <Image
+            className="size-8 transition-all group-hover:scale-110"
+            src={logo}
+            alt="logo"
+          />
+          <span className="sr-only">Omnipresence</span>
         </Link>
 
         <NavItem href="/dashboard" label="Dashboard">
           <Home className="h-5 w-5" />
         </NavItem>
 
-        <NavItem href="/dashboard/orders" label="Orders">
-          <ShoppingCart className="h-5 w-5" />
+        <NavItem href="/dashboard/orders" label="Past Incidents">
+          <ShieldCheck className="h-5 w-5" />
         </NavItem>
 
-        <NavItem href="/dashboard/products" label="Products">
+        {/* <NavItem href="/dashboard/products" label="Products">
           <Package className="h-5 w-5" />
-        </NavItem>
+        </NavItem> */}
 
-        <NavItem href="/dashboard/customers" label="Customers">
+        <NavItem href="/dashboard/customers" label="Search Users">
           <Users2 className="h-5 w-5" />
         </NavItem>
 
         <NavItem href="/dashboard/geofences" label="Geofences">
-          <LineChart className="h-5 w-5" />
+          <Fence className="h-5 w-5" />
         </NavItem>
 
         <NavItem href="/dashboard/safe-route" label="Safe Route">
-          <LineChart className="h-5 w-5" />
+          <MapPin className="h-5 w-5" />
         </NavItem>
       </nav>
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
@@ -144,13 +146,13 @@ function MobileNav() {
             <ShoppingCart className="h-5 w-5" />
             Orders
           </Link>
-          <Link
+          {/* <Link
             href="/dashboard/products"
             className="flex items-center gap-4 px-2.5 text-foreground"
           >
             <Package className="h-5 w-5" />
             Products
-          </Link>
+          </Link> */}
           <Link
             href="/dashboard/customers"
             className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
@@ -177,27 +179,3 @@ function MobileNav() {
     </Sheet>
   );
 }
-
-// function DashboardBreadcrumb() {
-//   return (
-//     <Breadcrumb className="hidden md:flex">
-//       <BreadcrumbList>
-//         <BreadcrumbItem>
-//           <BreadcrumbLink asChild>
-//             <Link href="#">Dashboard</Link>
-//           </BreadcrumbLink>
-//         </BreadcrumbItem>
-//         <BreadcrumbSeparator />
-//         <BreadcrumbItem>
-//           <BreadcrumbLink asChild>
-//             <Link href="#">Products</Link>
-//           </BreadcrumbLink>
-//         </BreadcrumbItem>
-//         <BreadcrumbSeparator />
-//         <BreadcrumbItem>
-//           <BreadcrumbPage>All Products</BreadcrumbPage>
-//         </BreadcrumbItem>
-//       </BreadcrumbList>
-//     </Breadcrumb>
-//   );
-// }
